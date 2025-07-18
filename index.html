@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFine: Decision-Making with Analogical Reasoning over Factor Profiles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1 class="main-title"><span class="pink-highlight">DeFine</span>: Decision-Making with Analogical Reasoning over Factor Profiles</h1>
+            
+            <div class="authors-section">
+                <div class="authors-line">
+                    <a href="mailto:yebowen.hu@ucf.edu" class="author-link">Yebowen Hu<sup>1</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=EeppWmkAAAAJ&hl=en" class="author-link">Xiaoyang Wang<sup>2</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=qwo2A24AAAAJ&hl=en" class="author-link">Wenlin Yao<sup>2</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=0AxcsAEAAAAJ&hl=en" class="author-link">Yiming Lu<sup>3</sup></a>,
+                    <a href="https://dwan.ch/" class="author-link">Daoan Zhang<sup>4</sup></a>
+                </div>
+                <div class="authors-line">
+                    <a href="https://scholar.google.com/citations?user=vNHN42cAAAAJ&hl=en" class="author-link"><strong>Hassan Foroosh<sup>1</sup></strong></a>,
+                    <a href="https://scholar.google.com/citations?user=tMY31_gAAAAJ&hl=en" class="author-link"><strong>Dong Yu<sup>2</sup></strong></a>,
+                    <a href="https://www.cs.emory.edu/~fliu40/" class="author-link"><strong>Fei Liu<sup>3</sup></strong></a>
+                </div>
+            </div>
+            
+            <div class="affiliations">
+                <div class="affiliation"><sup>1</sup>University of Central Florida</div>
+                <div class="affiliation"><sup>2</sup>Tencent AI Lab, Seattle</div>
+                <div class="affiliation"><sup>3</sup>Emory University</div>
+                <div class="affiliation"><sup>4</sup>University of Rochester</div>
+            </div>
+        </header>
+
+        <!-- Paper Links Section -->
+        <section class="paper-links">
+            <a href="https://arxiv.org/abs/2410.01772" class="link-button" id="arxiv-link">
+                <i class="fas fa-file-pdf"></i>
+                <span>ArXiv</span>
+            </a>
+            <a href="https://github.com/YebowenHu/DeFine" class="link-button" id="github-link">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="assets/ACL2025_Poster.pdf" class="link-button" id="poster-link" download>
+                <i class="fas fa-image"></i>
+                <span>Poster</span>
+            </a>
+            <a href="#" class="link-button" id="huggingface-link">
+                <img src="assets/hf-logo.svg" alt="HuggingFace Logo" class="hf-logo">
+            </a>
+        </section>
+
+        <!-- Content Navigation -->
+        <nav class="content-tabs">
+            <button class="tab-button active" data-tab="abstract">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Abstract</span>
+            </button>
+            <button class="tab-button" data-tab="framework">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Framework</span>
+            </button>
+            <button class="tab-button" data-tab="prompt">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Analogical Reasoning</span>
+            </button>
+            <button class="tab-button" data-tab="factors">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Essential Factors</span>
+            </button>
+            <button class="tab-button" data-tab="results">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Results</span>
+            </button>
+            <button class="tab-button" data-tab="demo">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Factor Profile</span>
+            </button>
+        </nav>
+
+        <!-- Content Sections -->
+        <main class="content-container">
+            <!-- Abstract Section -->
+            <section id="abstract" class="content-section active">
+                <div class="section-content">
+                    <h2>Abstract</h2>
+                    <p>
+                        LLMs are ideal for decision-making thanks to their ability to reason over long contexts. However, challenges arise when processing speech transcripts that describe complex scenarios, as they are verbose and include repetition, hedging, and vagueness. E.g., during a company's earnings call, an executive might project a positive revenue outlook to reassure investors, despite uncertainty regarding future earnings. It is crucial for LLMs to incorporate this uncertainty systematically when making decisions.
+                    </p>
+                    <p>
+                        In this paper, we introduce <strong><span class="pink-highlight">DeFine</span></strong>, a modular framework that constructs probabilistic factor profiles from complex scenarios. It then integrates these profiles with analogical reasoning, leveraging insights from similar past experiences to guide LLMs in making critical decisions in new situations. Our framework separates the tasks of quantifying uncertainty and incorporating it into LLM decision-making. This approach is particularly useful in areas such as consulting and financial deliberation, where making decisions under uncertainty is vital.
+                    </p>
+                    
+                    <div class="data-statistics">
+                        <h3>Data Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">11,950</div>
+                                <div class="stat-label">Transcripts</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">869</div>
+                                <div class="stat-label">Companies</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">10,187</div>
+                                <div class="stat-label">Avg. Tokens per Transcript</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">10</div>
+                                <div class="stat-label">Avg. Q&A Pairs per Transcript</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">14</div>
+                                <div class="stat-label">Avg. Transcripts per Company</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Avg. Speakers per Transcript</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">2017-2024</div>
+                                <div class="stat-label">Year Range</div>
+                            </div>
+                        </div>
+                        <p class="stats-caption">Our dataset includes 11,950 earnings call transcripts from 800+ companies.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Framework Section -->
+            <section id="framework" class="content-section">
+                <div class="section-content">
+                    <h2><span class="pink-highlight">DeFine</span> Framework</h2>
+                    <div class="framework-visual">
+                        <div class="framework-image">
+                            <img src="assets/example_framework_hd.png" alt="DeFine Framework Overview" class="responsive-image">
+                        </div>
+                        <p class="framework-caption">
+                            An excerpt from a typical earnings call transcript and its associated factor profile.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analogical Reasoning Prompt Section -->
+            <section id="prompt" class="content-section">
+                <div class="section-content">
+                    <h2>Analogical Reasoning Prompt</h2>
+                    <div class="prompt-container">
+                        <div class="prompt-header">
+                            <h3>Applying Analogical Reasoning to Investment Decisions</h3>
+                            <button class="copy-prompt-button" onclick="copyPrompt()">
+                                <i class="fas fa-copy"></i>
+                                <span>Copy Prompt</span>
+                            </button>
+                        </div>
+                        <div class="prompt-content">
+                            <div class="prompt-section">
+                                <h4>System Message</h4>
+                                <p>You're a financial analyst who specializes in giving investors buy or sell recommendations by thoroughly analyzing earnings call transcripts.</p>
+                            </div>
+                            
+                            <div class="prompt-section">
+                                <h4>User Message</h4>
+                                <p>Here are several example company profiles. Each profile highlights key factors from an earnings call transcript and probabilities for potential outcomes based on those factors. Each profile represents a specific company and is based on its historical earnings call data. Your job is to pick the most analogous example and use its strategy to solve the initial problem.</p>
+                                
+                                <div class="examples-list">
+                                    <div class="example-item">Example Company Profile 1:<br>{Factor Profile 1}<br>Analyst recommendation: {Action 1}</div>
+                                    <div class="example-item">Example Company Profile 2:<br>{Factor Profile 2}<br>Analyst recommendation: {Action 2}</div>
+                                    <div class="example-item">Example Company Profile 3:<br>{Factor Profile 3}<br>Analyst recommendation: {Action 3}</div>
+                                    <div class="example-item">Example Company Profile 4:<br>{Factor Profile 4}<br>Analyst recommendation: {Action 4}</div>
+                                    <div class="example-item">Example Company Profile 5:<br>{Factor Profile 5}<br>Analyst recommendation: {Action 5}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="prompt-section initial-problem">
+                                <h4>Initial Problem</h4>
+                                <p>Based on your analysis of the earnings call for <span class="variable">{Company Name}</span> held on <span class="variable">{Announcement Date}</span>, decide on the most likely analyst recommendation for the next 30 days from these options:</p>
+                                
+                                <div class="actions-list">
+                                    <div class="action-item">
+                                        <strong>Action 1: strong buy</strong> - The stock price will increase by more than 5%
+                                    </div>
+                                    <div class="action-item">
+                                        <strong>Action 2: buy</strong> - The stock price will increase by 2% to 5%
+                                    </div>
+                                    <div class="action-item">
+                                        <strong>Action 3: hold</strong> - The stock price is expected to remain stable, fluctuating between -2% to 2%
+                                    </div>
+                                    <div class="action-item">
+                                        <strong>Action 4: sell</strong> - The stock price will decrease by 2% to 5%
+                                    </div>
+                                    <div class="action-item">
+                                        <strong>Action 5: strong sell</strong> - The stock price will decrease by more than 5%
+                                    </div>
+                                </div>
+                                
+                                <p>Below is the company profile summarized from <span class="variable">{Company Name}</span>'s earnings call on <span class="variable">{Announcement Date}</span> and the historical price trend probabilities judged by an analyst:</p>
+                                
+                                <div class="factor-profile-placeholder">
+                                    <span class="variable">{Factor Profile Constructed Using an Earnings Call Transcript}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="prompt-section solve-section">
+                                <h4>Solve the Initial Problem</h4>
+                                <p>Please respond with the analyst recommendation for this stock in JSON format, including these keys: (<code>idx</code>, <code>recommendation</code>, <code>justification</code>). <code>idx</code> is the index of the most analogous example profile, and <code>recommendation</code> should be one of the actions mentioned above for 30 days of trading, and <code>justification</code> should clearly explain your recommendation using the strategy you learned from the selected example company profile.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Essential Factors Section -->
+            <section id="factors" class="content-section">
+                <div class="section-content">
+                    <h2>Essential Factors</h2>
+                    
+                    <!-- Factor Description Call-out Box -->
+                    <div class="factor-callout-box">
+                        <div class="callout-header">
+                            <h4 class="callout-title">Factor Description</h4>
+                        </div>
+                        <div class="callout-content">
+                            <p class="callout-text">Hover over any factor below to see its detailed description.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="factors-container">
+                        <div class="unified-factors-grid">
+                            <div class="factor-item" data-factor="economic_health">
+                                <span class="factor-number">1</span>
+                                <span class="factor-name">Economic Health</span>
+                            </div>
+                            <div class="factor-item" data-factor="market_sentiment_and_investor_psychology">
+                                <span class="factor-number">2</span>
+                                <span class="factor-name">Market Sentiment and Investor Psychology</span>
+                            </div>
+                            <div class="factor-item" data-factor="political_events_and_government_policies">
+                                <span class="factor-number">3</span>
+                                <span class="factor-name">Political Events and Government Policies</span>
+                            </div>
+                            <div class="factor-item" data-factor="natural_disasters_and_other_black_swan_events">
+                                <span class="factor-number">4</span>
+                                <span class="factor-name">Natural Disasters and Black Swan Events</span>
+                            </div>
+                            <div class="factor-item" data-factor="geopolitical_issues">
+                                <span class="factor-number">5</span>
+                                <span class="factor-name">Geopolitical Issues</span>
+                            </div>
+                            <div class="factor-item" data-factor="mergers_and_major_acquisitions">
+                                <span class="factor-number">6</span>
+                                <span class="factor-name">Mergers and Major Acquisitions</span>
+                            </div>
+                            <div class="factor-item" data-factor="regulatory_changes_and_legal_issues">
+                                <span class="factor-number">7</span>
+                                <span class="factor-name">Regulatory Changes and Legal Issues</span>
+                            </div>
+                            <div class="factor-item" data-factor="financial_health">
+                                <span class="factor-number">8</span>
+                                <span class="factor-name">Financial Health</span>
+                            </div>
+                            <div class="factor-item" data-factor="company_growth">
+                                <span class="factor-number">9</span>
+                                <span class="factor-name">Company Growth</span>
+                            </div>
+                            <div class="factor-item" data-factor="company_product_launches">
+                                <span class="factor-number">10</span>
+                                <span class="factor-name">Company Product Launches</span>
+                            </div>
+                            <div class="factor-item" data-factor="supply_chain">
+                                <span class="factor-number">11</span>
+                                <span class="factor-name">Supply Chain</span>
+                            </div>
+                            <div class="factor-item" data-factor="tech_innovation">
+                                <span class="factor-number">12</span>
+                                <span class="factor-name">Tech Innovation</span>
+                            </div>
+                            <div class="factor-item" data-factor="historical_eps">
+                                <span class="factor-number">13</span>
+                                <span class="factor-name">Historical Earnings Per Share (EPS)</span>
+                            </div>
+                            <div class="factor-item" data-factor="historical_revenue">
+                                <span class="factor-number">14</span>
+                                <span class="factor-name">Historical Revenue</span>
+                            </div>
+                            <div class="factor-item" data-factor="historical_stock_prices">
+                                <span class="factor-number">15</span>
+                                <span class="factor-name">Historical Stock Prices</span>
+                            </div>
+                        </div>
+                        
+                        <div class="factor-ranking">
+                            <h3>Factor Influence Rankings</h3>
+                            <div class="ranking-grid">
+                                <div class="ranking-card">
+                                    <h4>Consumer Defensive Sector</h4>
+                                    <p class="sector-description">Food & beverage, household products, and grocery stores</p>
+                                    <div class="ranking-list">
+                                        <div class="ranking-item rank-1">
+                                            <span class="rank-number">1</span>
+                                            <span class="factor-name">Regulatory changes and legal issues (positive outlook)</span>
+                                            <span class="salience-score">0.0364</span>
+                                        </div>
+                                        <div class="ranking-item rank-2">
+                                            <span class="rank-number">2</span>
+                                            <span class="factor-name">Natural disasters and other black swan events (major impact)</span>
+                                            <span class="salience-score">0.0360</span>
+                                        </div>
+                                        <div class="ranking-item rank-3">
+                                            <span class="rank-number">3</span>
+                                            <span class="factor-name">Political events and government policies (major upheaval)</span>
+                                            <span class="salience-score">0.0349</span>
+                                        </div>
+                                        <div class="ranking-item rank-4">
+                                            <span class="rank-number">4</span>
+                                            <span class="factor-name">Geopolitical issues (escalation to conflict)</span>
+                                            <span class="salience-score">0.0345</span>
+                                        </div>
+                                        <div class="ranking-item rank-5">
+                                            <span class="rank-number">5</span>
+                                            <span class="factor-name">Supply chain (positive outlook)</span>
+                                            <span class="salience-score">0.0322</span>
+                                        </div>
+                                        <div class="ranking-item rank-6">
+                                            <span class="rank-number">6</span>
+                                            <span class="factor-name">Tech innovation (positive outlook)</span>
+                                            <span class="salience-score">0.0317</span>
+                                        </div>
+                                        <div class="ranking-item rank-7">
+                                            <span class="rank-number">7</span>
+                                            <span class="factor-name">Historical stock price change (bullish)</span>
+                                            <span class="salience-score">0.0316</span>
+                                        </div>
+                                        <div class="ranking-item rank-8">
+                                            <span class="rank-number">8</span>
+                                            <span class="factor-name">Historical EPS (bullish)</span>
+                                            <span class="salience-score">0.0315</span>
+                                        </div>
+                                        <div class="ranking-item rank-9">
+                                            <span class="rank-number">9</span>
+                                            <span class="factor-name">Financial health (positive outlook)</span>
+                                            <span class="salience-score">0.0311</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="ranking-card">
+                                    <h4>Technology Sector</h4>
+                                    <p class="sector-description">Apple, Microsoft, Amazon, Google, and Meta</p>
+                                    <div class="ranking-list">
+                                        <div class="ranking-item rank-1">
+                                            <span class="rank-number">1</span>
+                                            <span class="factor-name">Economic health (unknown or uncertain)</span>
+                                            <span class="salience-score">0.0362</span>
+                                        </div>
+                                        <div class="ranking-item rank-2">
+                                            <span class="rank-number">2</span>
+                                            <span class="factor-name">Market sentiment and investor psychology (unknown or uncertain)</span>
+                                            <span class="salience-score">0.0350</span>
+                                        </div>
+                                        <div class="ranking-item rank-3">
+                                            <span class="rank-number">3</span>
+                                            <span class="factor-name">Company growth (unknown or uncertain)</span>
+                                            <span class="salience-score">0.0338</span>
+                                        </div>
+                                        <div class="ranking-item rank-4">
+                                            <span class="rank-number">4</span>
+                                            <span class="factor-name">Supply chain (unknown or uncertain)</span>
+                                            <span class="salience-score">0.0326</span>
+                                        </div>
+                                        <div class="ranking-item rank-5">
+                                            <span class="rank-number">5</span>
+                                            <span class="factor-name">Geopolitical issues (escalation to conflict)</span>
+                                            <span class="salience-score">0.0322</span>
+                                        </div>
+                                        <div class="ranking-item rank-6">
+                                            <span class="rank-number">6</span>
+                                            <span class="factor-name">Historical revenue (decline)</span>
+                                            <span class="salience-score">0.0319</span>
+                                        </div>
+                                        <div class="ranking-item rank-7">
+                                            <span class="rank-number">7</span>
+                                            <span class="factor-name">Historical stock price change (bullish)</span>
+                                            <span class="salience-score">0.0318</span>
+                                        </div>
+                                        <div class="ranking-item rank-8">
+                                            <span class="rank-number">8</span>
+                                            <span class="factor-name">Tech innovation (unknown or uncertain)</span>
+                                            <span class="salience-score">0.0315</span>
+                                        </div>
+                                        <div class="ranking-item rank-9">
+                                            <span class="rank-number">9</span>
+                                            <span class="factor-name">Natural disasters and other black swan events (major impact)</span>
+                                            <span class="salience-score">0.0315</span>
+                                        </div>
+                                        <div class="ranking-item rank-10">
+                                            <span class="rank-number">10</span>
+                                            <span class="factor-name">Political events and government policies (major upheaval)</span>
+                                            <span class="salience-score">0.0313</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results" class="content-section">
+                <div class="section-content">
+                    <h2>Experimental Results</h2>
+                    
+                    <div class="results-table-container">
+                        <h3>Performance Comparison</h3>
+                        <div class="performance-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>System</th>
+                                        <th>Recall</th>
+                                        <th>Precision</th>
+                                        <th>F₁</th>
+                                        <th>Accuracy</th>
+                                        <th class="separator"></th>
+                                        <th>Label</th>
+                                        <th>Recall</th>
+                                        <th>Precision</th>
+                                        <th>F₁</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LLM+CoT+Trans</td>
+                                        <td>21.56</td>
+                                        <td>33.66</td>
+                                        <td>13.52</td>
+                                        <td>19.59</td>
+                                        <td class="separator"></td>
+                                        <td>Strong Sell</td>
+                                        <td>7.32</td>
+                                        <td>37.50</td>
+                                        <td>12.24</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LLM+CoT+Summ</td>
+                                        <td>22.77</td>
+                                        <td>16.17</td>
+                                        <td>14.12</td>
+                                        <td>20.61</td>
+                                        <td class="separator"></td>
+                                        <td>Sell</td>
+                                        <td>5.56</td>
+                                        <td>9.09</td>
+                                        <td>6.90</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LLM+CoT+Factors</td>
+                                        <td>24.38</td>
+                                        <td>28.58</td>
+                                        <td>17.26</td>
+                                        <td>22.32</td>
+                                        <td class="separator"></td>
+                                        <td>Hold</td>
+                                        <td>29.84</td>
+                                        <td>28.24</td>
+                                        <td>29.02</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DeLLMa</td>
+                                        <td>38.30</td>
+                                        <td>23.14</td>
+                                        <td>16.68</td>
+                                        <td>22.35</td>
+                                        <td class="separator"></td>
+                                        <td>Buy</td>
+                                        <td>44.83</td>
+                                        <td>18.93</td>
+                                        <td>26.62</td>
+                                    </tr>
+                                    <tr class="highlight-row">
+                                        <td><strong><span class="pink-highlight">DeFine</span> (Ours)</strong></td>
+                                        <td>26.15</td>
+                                        <td>27.67</td>
+                                        <td><strong>23.73</strong></td>
+                                        <td><strong>29.64</strong></td>
+                                        <td class="separator"></td>
+                                        <td>Strong Buy</td>
+                                        <td>43.22</td>
+                                        <td>44.56</td>
+                                        <td><strong>43.88</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="table-caption">
+                            <strong>Left:</strong> We show the accuracy and macro-averaged F-scores for various systems. Our system, <span class="pink-highlight">DeFine</span>, which combines factor profiles with analogical reasoning, achieves the best performance. <strong>Right:</strong> <span class="pink-highlight">DeFine</span>'s performance across five categories: Strong Sell, Sell, Hold, Buy, and Strong Buy.
+                        </p>
+                    </div>
+                    
+                    <div class="confusion-matrix-container">
+                        <h3>Confusion Matrix Comparison</h3>
+                        <div class="chart-container">
+                            <img src="assets/confusion_matrix.png" alt="Confusion Matrix Comparison" class="responsive-image">
+                        </div>
+                        <p class="chart-caption">
+                            A comparison of confusion matrices from the LLM+CoT+Trans, DeLLMa, and <span class="pink-highlight">DeFine</span> methods. While LLM+CoT+Trans and DeLLMa lean towards 'Buy (B),' <span class="pink-highlight">DeFine</span> offers more balanced outcomes across all decision categories, showing notable improvement in 'Strong Buy (SB),' 'Buy (B),' 'Hold (H),' and 'Sell (S)' decisions.
+                        </p>
+                    </div>
+                    
+                    <div class="outcome-likelihood-container">
+                        <h3>Outcome Likelihood Analysis</h3>
+                        <div class="chart-container">
+                            <img src="assets/outcome_likelihood_hd.png" alt="Outcome Likelihood Analysis" class="responsive-image">
+                        </div>
+                        <p class="chart-caption">
+                            We analyze and plot the probability density function (PDF) of positive and negative factor outcomes for different investment decisions. Highlighted sections illustrate where the gaps between strong buy (red) and strong sell (blue) decisions are most pronounced. 
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Factor Profile Section -->
+            <section id="demo" class="content-section">
+                <div class="section-content">
+                    <h2>Factor Profile Example</h2>
+                    
+                    <div class="company-selector-container">
+                        <label for="company-selector">Select Company:</label>
+                        <select id="company-selector" class="company-selector">
+                            <option value="">Loading companies...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="factor-profile-container">
+                        <div class="profile-tag">
+                            <span class="company-tag" id="company-tag">Select a company</span>
+                        </div>
+                        <div class="profile-content" id="factor-profile-content">
+                            <div class="instruction-message">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Please select a company from the dropdown above to view its factor profile.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Citation Section -->
+        <section class="citation-section">
+            <h3>Citation</h3>
+            <p>If you find this work useful, please consider citing our paper:</p>
+            
+            <div class="bibtex-container">
+                <pre id="bibtex-content">@misc{hu2025definedecisionmakinganalogicalreasoning,
+        title={<span class="pink-highlight">DeFine</span>: Decision-Making with Analogical Reasoning over Factor Profiles}, 
+        author={Yebowen Hu and Xiaoyang Wang and Wenlin Yao and Yiming Lu and Daoan Zhang and Hassan Foroosh and Dong Yu and Fei Liu},
+        year={2025},
+        eprint={2410.01772},
+        archivePrefix={arXiv},
+        primaryClass={cs.CL},
+        url={https://arxiv.org/abs/2410.01772}, 
+    }
+}</pre>
+                <button class="copy-button" onclick="copyBibTeX()">
+                    <i class="fas fa-copy"></i>
+                    <span>Copy BibTeX</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
