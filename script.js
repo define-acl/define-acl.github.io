@@ -494,8 +494,6 @@ async function loadCompanies() {
 async function loadFactorProfile(filename) {
     console.log('loadFactorProfile called with filename:', filename);
     const contentContainer = document.getElementById('factor-profile-content');
-    const companyTag = document.getElementById('company-tag');
-    const companySelector = document.getElementById('company-selector');
     
     console.log('Content container found:', contentContainer);
     
@@ -528,14 +526,6 @@ async function loadFactorProfile(filename) {
         
         const data = await response.json();
         console.log('Data loaded successfully:', data);
-        
-        // Update company tag
-        if (companyTag && companySelector) {
-            const selectedOption = companySelector.options[companySelector.selectedIndex];
-            if (selectedOption && selectedOption.dataset.companyName) {
-                companyTag.textContent = selectedOption.dataset.companyName;
-            }
-        }
         
         renderFactorProfile(data, contentContainer);
         

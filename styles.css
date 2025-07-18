@@ -977,27 +977,6 @@ body {
 
 .factor-profile-container {
     margin-top: 30px;
-    position: relative;
-}
-
-.profile-tag {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
-
-.company-tag {
-    display: inline-block;
-    background: linear-gradient(135deg, #000000, #333333);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 0 0 12px 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .profile-header {
@@ -1025,7 +1004,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 25px;
-    margin-top: 30px;
+    margin-top: 0;
 }
 
 .factor-card {
