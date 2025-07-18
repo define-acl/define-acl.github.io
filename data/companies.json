@@ -1,0 +1,28 @@
+{
+  "companies": [
+    {
+      "id": "NVDA",
+      "name": "NVIDIA Corporation",
+      "symbol": "NVDA",
+      "filename": "NVDA_2024-05-22.json",
+      "date": "May 22, 2024",
+      "description": "AI and GPU technology leader"
+    },
+    {
+      "id": "AMZN",
+      "name": "Amazon",
+      "symbol": "AMZN",
+      "filename": "AMZN_2024-08-01.json",
+      "date": "August 1, 2024",
+      "description": "Global e-commerce and cloud computing leader"
+    },
+    {
+      "id": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "symbol": "JPM",
+      "filename": "JPM_2024-07-12.json",
+      "date": "July 12, 2024",
+      "description": "Global investment bank and financial services company"
+    }
+  ]
+}
