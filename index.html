@@ -68,6 +68,10 @@
                 <span class="liquid-bg"></span>
                 <span class="tab-text">Framework</span>
             </button>
+            <button class="tab-button" data-tab="demo">
+                <span class="liquid-bg"></span>
+                <span class="tab-text">Factor Profile</span>
+            </button>
             <button class="tab-button" data-tab="prompt">
                 <span class="liquid-bg"></span>
                 <span class="tab-text">Analogical Reasoning</span>
@@ -78,11 +82,7 @@
             </button>
             <button class="tab-button" data-tab="results">
                 <span class="liquid-bg"></span>
-                <span class="tab-text">Results</span>
-            </button>
-            <button class="tab-button" data-tab="demo">
-                <span class="liquid-bg"></span>
-                <span class="tab-text">Factor Profile</span>
+                <span class="tab-text">Experiments</span>
             </button>
         </nav>
 
@@ -147,6 +147,29 @@
                         <p class="framework-caption">
                             An excerpt from a typical earnings call transcript and its associated factor profile.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Factor Profile Section -->
+            <section id="demo" class="content-section">
+                <div class="section-content">
+                    <h2>Factor Profile Example</h2>
+                    
+                    <div class="company-selector-container">
+                        <label for="company-selector">Select Company:</label>
+                        <select id="company-selector" class="company-selector">
+                            <option value="">Loading companies...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="factor-profile-container">
+                        <div class="profile-content" id="factor-profile-content">
+                            <div class="instruction-message">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Please select a company from the dropdown above to view its factor profile.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -530,28 +553,6 @@
                 </div>
             </section>
 
-            <!-- Factor Profile Section -->
-            <section id="demo" class="content-section">
-                <div class="section-content">
-                    <h2>Factor Profile Example</h2>
-                    
-                    <div class="company-selector-container">
-                        <label for="company-selector">Select Company:</label>
-                        <select id="company-selector" class="company-selector">
-                            <option value="">Loading companies...</option>
-                        </select>
-                    </div>
-                    
-                    <div class="factor-profile-container">
-                        <div class="profile-content" id="factor-profile-content">
-                            <div class="instruction-message">
-                                <i class="fas fa-info-circle"></i>
-                                <p>Please select a company from the dropdown above to view its factor profile.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <!-- Citation Section -->
