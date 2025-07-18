@@ -10,7 +10,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions about the research or website, please contact:
 - Yebowen Hu: yebowen.hu@ucf.edu
-- Fei Liu: fei.liu@emory.edu
 
 ---
 
